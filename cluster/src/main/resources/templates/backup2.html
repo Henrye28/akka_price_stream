@@ -1,0 +1,82 @@
+<HTML xmlns:th="http://www.w3.org/1999/xhtml">
+<HEAD>
+    <TITLE> Add/Remove dynamic rows in HTML table </TITLE>
+    <SCRIPT src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></SCRIPT>
+    <SCRIPT language="javascript">
+        function clickButton(){
+            var coin = ''
+            var quantity = ''
+            var priceTable = document.getElementById('priceTable');
+            // LOOP THROUGH EACH ROW OF THE TABLE AFTER HEADER.
+            for (i = 1; i < priceTable.rows.length; i++) {
+                // GET THE CELLS COLLECTION OF THE CURRENT ROW.
+                var objCells = priceTable.rows.item(i).cells;
+                coin = coin + ',' + objCells[1].children[0].value
+                quantity = quantity + ',' + objCells[2].children[0].value
+            }
+
+            $.ajax({
+                    type:"post",
+                    url:"/price/underlying",
+                    data:
+                    {
+                       'coin':coin,
+                       'quantity':quantity
+                    },
+                    cache:false,
+                    success: function (html)
+                    {
+                       alert('Data Send');
+                       $('#msg').html(html);
+                    }
+            });
+            return false;
+        }
+	</SCRIPT>
+</HEAD>
+<BODY>
+
+<!--<FORM action="/underlying" method="post">-->
+<TABLE id="priceTable" width="350px" border="1">
+    <TR>
+        <TH> </TH>
+        <TH>Coin</TH>
+        <TH>Quantity</TH>
+        <TH>Price</TH>
+    </TR>
+    <TR>
+        <TD> <INPUT type="checkbox" name="chk"/></TD>
+        <TD> <INPUT type="text" name="coin"/> </TD>
+        <TD> <INPUT type="text" name="quantity"/> </TD>
+        <TD> <INPUT type="text" name="price" readonly/> </TD>
+    </TR>
+    <TR>
+        <TD> <INPUT type="checkbox" name="chk"/></TD>
+        <TD> <INPUT type="text" name="coin"/> </TD>
+        <TD> <INPUT type="text" name="quantity"/> </TD>
+        <TD> <INPUT type="text" name="price" readonly/> </TD>
+    </TR>
+    <TR>
+        <TD> <INPUT type="checkbox" name="chk"/></TD>
+        <TD> <INPUT type="text" name="coin"/> </TD>
+        <TD> <INPUT type="text" name="quantity"/> </TD>
+        <TD> <INPUT type="text" name="price" readonly/> </TD>
+    </TR>
+    <TR>
+        <TD> <INPUT type="checkbox" name="chk"/></TD>
+        <TD> <INPUT type="text" name="coin"/> </TD>
+        <TD> <INPUT type="text" name="quantity"/> </TD>
+        <TD> <INPUT type="text" name="price" readonly/> </TD>
+    </TR>
+    <TR>
+        <TD> <INPUT type="checkbox" name="chk"/></TD>
+        <TD> <INPUT type="text" name="coin"/> </TD>
+        <TD> <INPUT type="text" name="quantity"/> </TD>
+        <TD> <INPUT type="text" name="price" readonly/> </TD>
+    </TR>
+</TABLE>
+<input type="button" value="refresh underlyings" onclick="clickButton()">
+<!--</FORM>-->
+
+</BODY>
+</HTML>
