@@ -1,7 +1,7 @@
 package com.henryye.cluster.config;
 
 import akka.actor.typed.ActorSystem;
-import akka.management.javadsl.AkkaManagement;
+//import akka.management.javadsl.AkkaManagement;
 import com.henryye.cluster.actor.ActorRoot;
 import com.typesafe.config.Config;
 import com.typesafe.config.ConfigFactory;
@@ -28,7 +28,7 @@ public class ActorConfig {
         config.withFallback(ConfigFactory.parseMap(overrides));
 
         ActorSystem priceClusterSystem = ActorSystem.create(new ActorRoot(simpMessagingTemplate).getRootBehavior(), "PriceClusterSystem", config);
-        AkkaManagement.get(priceClusterSystem).start();
+//        AkkaManagement.get(priceClusterSystem).start();
         return priceClusterSystem;
     }
 

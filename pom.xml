@@ -23,6 +23,11 @@
 		<akka.version>2.6.13</akka.version>
 		<akka.management.version>1.0.9</akka.management.version>
 		<akka.http.version>10.2.3</akka.http.version>
+
+		<!-- Declare Cinnamon version -->
+		<cinnamon.version>2.16.1</cinnamon.version>
+		<!-- The Scala binary version -->
+		<scala.bin.version>2.13</scala.bin.version>
 	</properties>
 
 	<repositories>
@@ -75,16 +80,16 @@
 		</dependency>
 
 		<!-- Akka Management -->
-		<dependency>
-			<groupId>com.lightbend.akka.management</groupId>
-			<artifactId>akka-management_${scala.version}</artifactId>
-			<version>${akka.management.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>com.lightbend.akka.management</groupId>
-			<artifactId>akka-management-cluster-http_${scala.version}</artifactId>
-			<version>${akka.management.version}</version>
-		</dependency>
+<!--		<dependency>-->
+<!--			<groupId>com.lightbend.akka.management</groupId>-->
+<!--			<artifactId>akka-management_${scala.version}</artifactId>-->
+<!--			<version>${akka.management.version}</version>-->
+<!--		</dependency>-->
+<!--		<dependency>-->
+<!--			<groupId>com.lightbend.akka.management</groupId>-->
+<!--			<artifactId>akka-management-cluster-http_${scala.version}</artifactId>-->
+<!--			<version>${akka.management.version}</version>-->
+<!--		</dependency>-->
 
 
 		<dependency>
@@ -101,14 +106,44 @@
 		<!--	Lightbend backend DataDog plugins	-->
 		<dependency>
 			<groupId>com.lightbend.cinnamon</groupId>
-			<artifactId>cinnamon-chmetrics</artifactId>
-			<version>2.16.1</version>
-		</dependency>
-		<dependency>
-			<groupId>com.lightbend.cinnamon</groupId>
 			<artifactId>cinnamon-datadog</artifactId>
 			<version>2.16.1</version>
 		</dependency>
+
+		<dependency>
+			<groupId>com.lightbend.cinnamon</groupId>
+			<artifactId>cinnamon-akka_${scala.bin.version}</artifactId>
+			<version>${cinnamon.version}</version>
+		</dependency>
+		<!-- Use Coda Hale Metrics and Akka instrumentation -->
+		<dependency>
+			<groupId>com.lightbend.cinnamon</groupId>
+			<artifactId>cinnamon-chmetrics</artifactId>
+			<version>${cinnamon.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.typesafe.akka</groupId>
+			<artifactId>akka-actor-typed_${scala.bin.version}</artifactId>
+			<version>${akka.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>ch.qos.logback</groupId>
+			<artifactId>logback-classic</artifactId>
+			<version>1.2.3</version>
+		</dependency>
+		<dependency>
+			<groupId>com.typesafe.akka</groupId>
+			<artifactId>akka-actor-testkit-typed_${scala.bin.version}</artifactId>
+			<version>${akka.version}</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.13.1</version>
+			<scope>test</scope>
+		</dependency>
+
 	</dependencies>
 
 
