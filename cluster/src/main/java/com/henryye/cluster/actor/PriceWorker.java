@@ -32,7 +32,7 @@ public final class PriceWorker extends AbstractBehavior<Message> {
   }
 
   private Behavior<Message> process(Task task) throws InterruptedException {
-    getContext().getLog().info("Price Worker processing request [{}]", task);
+    getContext().getLog().info(this.getContext().getSelf().toString() + " Price Worker processing request [{}]", task);
     double resultPrice = task.price * task.quantity;
     /*
     Mock price calculation work
