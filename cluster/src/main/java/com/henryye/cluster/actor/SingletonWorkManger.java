@@ -21,6 +21,7 @@ public class SingletonWorkManger extends AbstractBehavior<Message> {
         return Behaviors.setup(context -> {
             GroupRouter<Task> workerGroupBehavior = Routers
                     .group(WORKERS_SERVICE_KEY)
+                    //Message routing logic based on coin id
                     .withConsistentHashingRouting(1, task -> task.getCoinId());
 
             ActorRef<Task> workersRouter =
